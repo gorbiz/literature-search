@@ -19,6 +19,7 @@
       background-color: #eee;
       border: 1px solid #666;
     }
+    summary { cursor: pointer; }
   </style>
   <script>
     async function crossref (doi) {
@@ -64,7 +65,18 @@
   </div>
   <button id="submit">Search</button>
   <p>Service used: https://api.crossref.org/works/[DOI]</p>
-  <a href="https://github.com/gorbiz/literature-search">Source code</a>
+
+  <details>
+    <summary>HOWTO: Import to Google Sheets</summary>
+    <figure>
+      <img src="google-sheets-import.png" alt="">
+      <figcaption>Copy paste the results into a Google Sheet, click the special-paste dropdown > Split text to columns:</figcaption>
+    </figure>
+  </details>
+
+  <p>
+    <a href="https://github.com/gorbiz/literature-search">Source code</a>
+  </p>
 
   <script>
     document.querySelector('#submit').onclick = function (event) {
