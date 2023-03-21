@@ -7,18 +7,16 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📑</text></svg>">
   <title>DOI to reference count</title>
   <style>
+    .unem { opacity: 0.5; }
     .doi-ref-container {
       display: flex;
       flex-direction: row;
       gap: 10px;
     }
-    pre.refs {
-      margin: 0;
+    textarea[name="results"] {
       min-width: 400px;
-      padding: 4px;
-      background-color: #eee;
-      border: 1px solid #666;
     }
+    details.howto { padding-top: 16px; }
     summary { cursor: pointer; }
   </style>
   <script>
@@ -41,19 +39,12 @@
       if (service === 'opencitations') return opencitations(doi)
       throw new Error('Service not supported')
     }
-
-    async function main () {
-      const referenceCount = await doiToCite('10.1016/j.neuropsychologia.2023.108503')
-      console.log({ referenceCount })
-    }
-
-    main()
   </script>
 </head>
 <body>
   <a href="/literature-search/">Back</a>
   <h1>DOI to reference count</h1>
-  <p>Enter a list of DOIs, one per line, and click the button to get the number of references for each DOI.</p>
+  <p>Enter a list of DOIs, one per line <span class="unem">(ex copied from a Google/Excel sheet)</span>, and click the button to get the number of references for each DOI <span class="unem">(according to crossref.org)</span>.</p>
   <div class="doi-ref-container">
     <div>
       <textarea name="dois" cols="60" rows="30" placeholder="10.1088/1741-2552/acc486
@@ -61,16 +52,15 @@
 10.1016/j.ejmg.2023.104727
 ..."></textarea><br>
     </div>
-    <pre class="refs">[ results ]</pre>
+    <textarea name="results" readonly disabled>[ results ]</textarea>
   </div>
   <button id="submit">Search</button>
-  <p>Service used: https://api.crossref.org/works/[DOI]</p>
 
-  <details>
+  <details class="howto">
     <summary>HOWTO: Import to Google Sheets</summary>
     <figure>
       <img src="google-sheets-import.png" alt="">
-      <figcaption>Copy paste the results into a Google Sheet, click the special-paste dropdown > Split text to columns:</figcaption>
+      <figcaption>Copy-paste the results into a Google Sheet, click the special-paste dropdown > Split text to columns:</figcaption>
     </figure>
   </details>
 
@@ -80,12 +70,12 @@
 
   <script>
     document.querySelector('#submit').onclick = function (event) {
-      // document.querySelector('.refs').innerHTML = `${'refs,'.padEnd(5)} doi\n`
-      document.querySelector('.refs').innerHTML = ''
+      const results = document.querySelector('textarea[name="results"]')
+      results.value = ''
       const dois = document.querySelector('textarea[name="dois"]').value.split('\n')
       dois.forEach(async (doi) => {
         const referenceCount = await doiToCite(doi)
-        document.querySelector('.refs').innerHTML += `${(referenceCount + ',').padEnd(5)} ${doi}\n`
+        results.value += `${(referenceCount + ',').padEnd(5)} ${doi}\n`
       })
     }
   </script>
