@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PubMed .csv + abstracts.txt</title>
+  <style>
+    textarea {
+      min-width: 55em;
+      height: 100%;
+      white-space: nowrap;
+      font-family: monospace;
+    }
+    #drop_zone {
+      padding: 8px;
+      border: 1px solid #aaa;
+      width: 200px;
+      height: 100px;
+    }
+    #error {
+      color: #c00;
+    }
+  </style>
+  <script>
+    let data = { }
+
+    function render (data) {
+      if (data.csv) document.getElementById('csv').value = data.csv
+      if (data.txt) document.getElementById('txt').value = data.txt
+      // const csv = data.csv.split('\n').map((line) => line.split(','))
+      // console.log(csv)
+    }
+    function setError (msg) {
+      document.getElementById('error').innerHTML = msg
+    }
+
+    function processFile (file) {
+      console.log(`Processing file: ${file.name} (${file.size} bytes)`)
+      const ext = file.name.split('.').pop()
+      if (ext !== 'txt' && ext !== 'csv') return setError('Only .csv and .txt files will work...')
+      setError('')
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const text = e.target.result
+        if (!text) return setError(`Empty file‽ "${file.name}"`)
+        data[ext] = text
+        render(data)
+      }
+      reader.readAsText(file)
+    }
+
+    function dropHandler(ev) {
+      console.log("File(s) dropped")
+      // Prevent default behavior (Prevent file from being opened)
+      ev.preventDefault()
+
+      if (ev.dataTransfer.items) {
+        // Use DataTransferItemList interface to access the file(s)
+        [...ev.dataTransfer.items].forEach((item, i) => {
+          // If dropped items aren't files, reject them
+          if (item.kind === "file") processFile(item.getAsFile())
+        })
+      } else {
+        [...ev.dataTransfer.files].forEach(processFile) // Use DataTransfer interface to access the file(s)
+      }
+    }
+    function dragOverHandler (ev) {
+      // console.log("File(s) in drop zone")
+      ev.preventDefault() // Prevent default behavior (Prevent file from being opened)
+      // TODO Add effect ... some css or text
+    }
+  </script>
+</head>
+<body>
+  <p>Paste or drag a .csv and a .txt (with abstracts) from PubMed search results.</p>
+  <div id="error"></div>
+
+  <textarea name="csv" id="csv" cols="30" rows="10" placeholder="CSV goes here (paste / drop file)"></textarea>
+  <textarea name="txt" id="txt" cols="30" rows="10" placeholder="TXT goes here (abstracts)"></textarea>
+
+  <script>
+    document.querySelectorAll('#csv, #txt').forEach((el) => {
+      el.ondrop = dropHandler
+      el.ondragover = dragOverHandler
+    })
+  </script>
+</body>
+</html>
