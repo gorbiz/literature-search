@@ -24,11 +24,11 @@
       const raw = await fetch(`https://api.crossref.org/works/${doi}`)
       const data = await raw.json()
       if (!data || !data.message) return null
-      return data.message['reference-count']
+      return data.message['is-referenced-by-count']
     }
-    
+
     async function opencitations (doi) { // XXX untested!
-      const raw = await fetch(`https://opencitations.net/index/api/v1/reference-count/${doi}`)
+      const raw = await fetch(`https://opencitations.net/index/api/v1/reference-count/${doi}`) // FIXME is this even teh correct URL?
       const data = await raw.json()
       if (!data || !data.length || !data[0]) return null
       return data[0].count
