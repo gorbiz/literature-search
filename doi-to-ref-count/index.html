@@ -7,6 +7,9 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📑</text></svg>">
   <title>DOI → nr citations</title>
   <style>
+    * { font-family: monospace; }
+    p { max-width: 60em; }
+    summary { cursor: pointer; }
     .unem { opacity: 0.5; }
     .doi-ref-container {
       display: flex;
@@ -17,7 +20,6 @@
       min-width: 400px;
     }
     details.howto { padding-top: 16px; }
-    summary { cursor: pointer; }
   </style>
   <script>
     async function crossref (doi) {
@@ -42,9 +44,9 @@
   </script>
 </head>
 <body>
-  <a href="/literature-search/">Back</a>
+  <a href="/literature-search/">🏠 Home</a>
   <h1>DOI → nr citations</h1>
-  <p>Enter a list of DOIs, one per line <span class="unem">(ex copied from a Google/Excel sheet)</span>, and click the button to get the number of citations for each DOI <span class="unem">(according to crossref.org)</span>.</p>
+  <p>Enter a list of DOIs, one per line <span class="unem">(ex copied from a Google/Excel sheet)</span>, and click the button to get the number of citations for each DOI <span class="unem">(from crossref.org)</span>.</p>
   <div class="doi-ref-container">
     <div>
       <textarea name="dois" cols="60" rows="30" placeholder="10.1088/1741-2552/acc486
