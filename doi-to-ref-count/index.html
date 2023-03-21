@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DOI to cite</title>
+  <title>DOI to reference count</title>
   <style>
     .doi-ref-container {
       display: flex;
@@ -13,7 +13,7 @@
     }
     pre.refs {
       margin: 0;
-      min-width: 300px;
+      min-width: 400px;
       padding: 4px;
       background-color: #eee;
       border: 1px solid #666;
@@ -54,7 +54,10 @@
   <p>Enter a list of DOIs, one per line, and click the button to get the number of references for each DOI.</p>
   <div class="doi-ref-container">
     <div>
-      <textarea name="dois" cols="60" rows="30"></textarea><br>
+      <textarea name="dois" cols="60" rows="30" placeholder="10.1088/1741-2552/acc486
+10.1016/j.neuropsychologia.2023.108503
+10.1016/j.ejmg.2023.104727
+..."></textarea><br>
     </div>
     <pre class="refs">[ results ]</pre>
   </div>
