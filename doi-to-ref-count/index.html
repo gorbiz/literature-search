@@ -50,7 +50,6 @@
 </head>
 <body>
   <h1>DOI to reference count</h1>
-  <strong>Using https://api.crossref.org/works/[DOI]</strong>
   <p>Enter a list of DOIs, one per line, and click the button to get the number of references for each DOI.</p>
   <div class="doi-ref-container">
     <div>
@@ -62,6 +61,7 @@
     <pre class="refs">[ results ]</pre>
   </div>
   <button id="submit">Search</button>
+  <p>Service used: https://api.crossref.org/works/[DOI]</p>
 
   <script>
     document.querySelector('#submit').onclick = function (event) {
