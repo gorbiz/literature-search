@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOI to cite</title>
+  <style>
+    .doi-ref-container {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+    pre.refs {
+      margin: 0;
+      min-width: 300px;
+      padding: 4px;
+      background-color: #eee;
+      border: 1px solid #666;
+    }
+  </style>
+  <script>
+    async function crossref (doi) {
+      const raw = await fetch(`https://api.crossref.org/works/${doi}`)
+      const data = await raw.json()
+      if (!data || !data.message) return null
+      return data.message['reference-count']
+    }
+    
+    async function opencitations (doi) { // XXX untested!
+      const raw = await fetch(`https://opencitations.net/index/api/v1/reference-count/${doi}`)
+      const data = await raw.json()
+      if (!data || !data.length || !data[0]) return null
+      return data[0].count
+    }
+
+    function doiToCite (doi, service = 'crossref') {
+      if (service === 'crossref') return crossref(doi)
+      if (service === 'opencitations') return opencitations(doi)
+      throw new Error('Service not supported')
+    }
+
+    async function main () {
+      const referenceCount = await doiToCite('10.1016/j.neuropsychologia.2023.108503')
+      console.log({ referenceCount })
+    }
+
+    main()
+  </script>
+</head>
+<body>
+  <h1>DOI to reference count</h1>
+  <strong>Using https://api.crossref.org/works/[DOI]</strong>
+  <p>Enter a list of DOIs, one per line, and click the button to get the number of references for each DOI.</p>
+  <div class="doi-ref-container">
+    <div>
+      <textarea name="dois" cols="60" rows="30"></textarea><br>
+    </div>
+    <pre class="refs">[ results ]</pre>
+  </div>
+  <button id="submit">Search</button>
+
+  <script>
+    document.querySelector('#submit').onclick = function (event) {
+      // document.querySelector('.refs').innerHTML = `${'refs,'.padEnd(5)} doi\n`
+      document.querySelector('.refs').innerHTML = ''
+      const dois = document.querySelector('textarea[name="dois"]').value.split('\n')
+      dois.forEach(async (doi) => {
+        const referenceCount = await doiToCite(doi)
+        document.querySelector('.refs').innerHTML += `${(referenceCount + ',').padEnd(5)} ${doi}\n`
+      })
+    }
+  </script>
+</body>
+</html>
