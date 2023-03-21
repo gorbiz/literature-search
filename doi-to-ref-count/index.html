@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📑</text></svg>">
-  <title>DOI to reference count</title>
+  <title>DOI → nr citations</title>
   <style>
     .unem { opacity: 0.5; }
     .doi-ref-container {
@@ -43,8 +43,8 @@
 </head>
 <body>
   <a href="/literature-search/">Back</a>
-  <h1>DOI to reference count</h1>
-  <p>Enter a list of DOIs, one per line <span class="unem">(ex copied from a Google/Excel sheet)</span>, and click the button to get the number of references for each DOI <span class="unem">(according to crossref.org)</span>.</p>
+  <h1>DOI → nr citations</h1>
+  <p>Enter a list of DOIs, one per line <span class="unem">(ex copied from a Google/Excel sheet)</span>, and click the button to get the number of citations for each DOI <span class="unem">(according to crossref.org)</span>.</p>
   <div class="doi-ref-container">
     <div>
       <textarea name="dois" cols="60" rows="30" placeholder="10.1088/1741-2552/acc486
@@ -74,8 +74,8 @@
       results.value = ''
       const dois = document.querySelector('textarea[name="dois"]').value.split('\n')
       dois.forEach(async (doi) => {
-        const referenceCount = await doiToCite(doi)
-        results.value += `${(referenceCount + ',').padEnd(5)} ${doi}\n`
+        const citeCount = await doiToCite(doi)
+        results.value += `${(citeCount + ',').padEnd(5)} ${doi}\n`
       })
     }
   </script>
