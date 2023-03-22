@@ -1,0 +1,100 @@
+1. Conscious Cogn. 2022 Feb;98:103282. doi: 10.1016/j.concog.2022.103282. Epub 2022 
+Jan 24.
+
+Error awareness and post-error slowing: The effect of manipulating trial 
+intervals.
+
+Dali G(1), Orr C(2), Hester R(2).
+
+Author information:
+(1)Melbourne School of Psychological Sciences, The University of Melbourne, 
+Parkville 3010, Vic., Australia. Electronic address: gezelledali@gmail.com.
+(2)Melbourne School of Psychological Sciences, The University of Melbourne, 
+Parkville 3010, Vic., Australia.
+
+Post-error slowing is often considered to be an error-related process that 
+relies upon conscious error recognition, however evidence regarding this 
+relationship is mixed. These inconsistent findings may be explained by the 
+influence of task demands on post-error slowing. The current set of experiments 
+aimed to investigate the role of error awareness in post-error slowing in an 
+error awareness task with up to three dynamic conditions. In each condition, we 
+manipulated the interval between lure trials (infrequent trials that require a 
+different response to target trials) such that they were presented either 
+randomly (standard condition), closely spaced (proximal condition) or widely 
+spaced (distal condition) among target trials. This design attempted to clarify 
+if the relationship between error awareness and post-error slowing is contingent 
+upon task constraints such as trial timing and whether it persists over several 
+trials. Our experiments demonstrate that under dynamic lure interval conditions, 
+error awareness and post-error slowing are only weakly related. Further, 
+post-error slowing was greatest in the standard condition which randomly 
+presented lure trials, while accuracy was lowest in this condition across both 
+experiments. Exclusion of the first post-error trial from both experiments 
+eliminated all effects, indicating that there were only transient differences in 
+post-error reaction time adjustments that were exclusive to the first post-error 
+trial. Our findings thus align with non-functional accounts of post-error 
+slowing and support the notion that post-error slowing and cognitive control can 
+be separate processes that are largely not dependent on error awareness.
+
+Copyright © 2022 Elsevier Inc. All rights reserved.
+
+DOI: 10.1016/j.concog.2022.103282
+PMID: 35085977 [Indexed for MEDLINE]
+
+
+2. Endocrine. 2021 Mar;71(3):537-538. doi: 10.1007/s12020-020-02602-z. Epub 2021 
+Jan 15.
+
+Introduction to Endo-ERN-scope and mission.
+
+Pereira AM(1), Hiort O(2).
+
+Author information:
+(1)Department of Medicine, Division of Endocrinology and Centre for Endocrine 
+Tumors Leiden (CETL), Leiden University Medical Centre, Leiden, the Netherlands. 
+a.m.pereira@lumc.nl.
+(2)Division of Paediatric Endocrinology and Diabetes, Department of Paediatrics 
+and Adolescent Medicine, University of Lübeck, Lübeck, Germany.
+
+The official installation of the European Reference Networks in 2017 formed the 
+foundation to improve quality and safety and access to highly specialized health 
+care across the EU for patients affected by rare or low prevalence and complex 
+conditions. The European Reference Network on Rare Endocrine Conditions 
+(Endo-ERN) covers specific expertise from birth to senescence with a specific 
+governance structure characterized by both a pediatric and an adult chair, and 
+equal responsibilities for patient representatives and health care providers. 
+The introduction on the scope and mission of Endo describes the complexity of 
+the Endo-ERN mission and will thrive toward the ultimate aim and mission of the 
+network of reducing health care inequalities across Europe. Specific knowledge 
+and medical expertise of the existing rare endocrine condition is urgently 
+needed, and therefore, raising awareness for Rare Disease Day from the Endo-ERN 
+perspective is imperative.
+
+DOI: 10.1007/s12020-020-02602-z
+PMCID: PMC7809090
+PMID: 33449294 [Indexed for MEDLINE]
+
+Conflict of interest statement: The authors declare that they have no conflict 
+of interest.
+
+
+3. Perspect Psychol Sci. 2018 Mar;13(2):161-165. doi: 10.1177/1745691618754502.
+
+The Error-Related Negativity, Self-Monitoring, and Consciousness.
+
+Dehaene S(1)(2).
+
+Author information:
+(1)1 Experimental Cognitive Psychology, Collège de France, Paris.
+(2)2 INSERM-CEA Cognitive Neuroimaging Unit, NeuroSpin Center, Saclay, France.
+
+The error-related negativity (ERN) is a negative waveform that arises over the 
+front of the scalp immediately after a participant makes a detectable error. The 
+goal of this short article is to describe my serendipitous encounter with this 
+brain signal in 1993-1994 and to briefly review the operation of the underlying 
+error-monitoring system. Recent work suggests that the ERN reflects an internal 
+comparison, by the anterior cingulate cortex, of two signals: an unconscious 
+representation of the ongoing action and a conscious representation of the 
+intended one.
+
+DOI: 10.1177/1745691618754502
+PMID: 29592636
