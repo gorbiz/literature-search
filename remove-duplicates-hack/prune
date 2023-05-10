@@ -1,0 +1,56 @@
+#!/bin/bash
+
+echo "Removing old files..."
+mkdir -p ./output
+rm -f ./output*.csv
+cd output
+
+cat ../original.tsv | sed -E 's/\t/^/g' > 0a.input.csv
+tail -n +2 0a.input.csv > 0a.headless.csv
+head -n 1 0a.input.csv > 0a.header.csv
+
+echo "Input: `cat 0a.headless.csv | wc -l` records."
+
+echo --------
+
+awk -F^ '!$10 || $10~"English"' 0a.headless.csv > 0b.english.csv
+echo "`cat 0b.english.csv | wc -l` records in English (or unspecified)."
+
+echo --------
+
+# Make sure to sort by Database; remove pubmed if duplicates...
+
+awk -F^ '!$3' 0b.english.csv > 1.no-pubmedid.csv
+awk -F^ '$3' 0b.english.csv > 1.has-pubmedid.csv
+echo "`cat 1.has-pubmedid.csv | wc -l` records with PubMedId (`cat 1.no-pubmedid.csv | wc -l` without)."
+
+sort -t^ -k3,3 -n -u 1.has-pubmedid.csv > 1.has-pubmedid-uniq.csv
+echo "`cat 1.has-pubmedid-uniq.csv | wc -l` unique records with PubMedId."
+cat 1.no-pubmedid.csv 1.has-pubmedid-uniq.csv > 2.alpha.csv
+echo "`cat 2.alpha.csv | wc -l` records."
+
+echo --------
+
+# NOTE this is barely modified from the above (PubMedId stuff)
+awk -F^ '!$4' 2.alpha.csv > 2.no-doi.csv
+awk -F^ '$4' 2.alpha.csv > 2.has-doi.csv
+echo "`cat 2.has-doi.csv | wc -l` records with DOI (`cat 2.no-doi.csv | wc -l` without)."
+sort -t^ -k4,4 -u 2.has-doi.csv > 2.has-doi-uniq.csv
+echo "`cat 2.has-doi-uniq.csv | wc -l` unique records with DOI."
+cat 2.no-doi.csv 2.has-doi-uniq.csv > 3.result.csv
+echo "`cat 3.result.csv | wc -l` records."
+
+echo
+echo "👀 Probable duplicates, has same Title (for manual inspection):"
+echo
+cat 3.result.csv | cut -d^ -f5 | sort | uniq -d -i
+
+echo
+diff --new-line-format="" --unchanged-line-format="" <(sort 0a.headless.csv) <(sort 3.result.csv) > 3.result-removed.csv
+echo "`cat 3.result-removed.csv | wc -l` records removed."
+
+echo
+echo "Writing result.csv & removed.csv..."
+cat 0a.header.csv 3.result.csv > ../result.csv
+cat 0a.header.csv 3.result-removed.csv > ../removed.csv
+echo
